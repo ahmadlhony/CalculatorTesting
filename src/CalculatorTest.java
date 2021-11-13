@@ -43,6 +43,4 @@ public class CalculatorTest {
         double result = calculator.divide(a, b);
         Assert.assertEquals(expectedResult, result,0.00005);
     }
-
-
 }
