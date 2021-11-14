@@ -1,6 +1,3 @@
-
-
-
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -11,12 +8,11 @@ public class CalculatorTest {
 
     @Test
     public void clear() {
-
         calculator.clear();
         String textAreaValue =calculator.textAreaValue();
-        // is it empty?
         Assert.assertTrue(textAreaValue.isEmpty());
     }
+
     @Test
     public void testAdd() {
         double a = 15; double b = 20;

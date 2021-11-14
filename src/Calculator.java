@@ -97,22 +97,18 @@ public class Calculator extends JFrame implements ActionListener {
         bDivision.setForeground(Color.white);
 
         bEqual.setFont(new Font("Dialog", 3, 28));
-//        bEqual.setText();
-//        bEqual.setPreferredSize(new Dimension(500,50));
         bEqual.setBackground(Color.decode("#FF9500"));
         bEqual.setForeground(Color.white);
 
         bClear.setFont(new Font("Dialog", 3, 28));
         bClear.setText("Clear");
-//        bClear.setPreferredSize(new Dimension(100,50));
         bClear.setBackground(Color.decode("#FF9500"));
         bClear.setForeground(Color.white);
 
 
         textField.setBackground(Color.decode("#505050"));
         textField.setForeground(Color.white);
-//        textField.setFont(new java.awt.Font("Dialog", 3, 38));
-
+//        textField.setFont(new Font("Dialog", 3, 40));
         textField.setPreferredSize(new Dimension(580,100));
         textField.setEditable(false);
 
@@ -133,37 +129,17 @@ public class Calculator extends JFrame implements ActionListener {
         bMul.addActionListener(this);
         bDivision.addActionListener(this);
 
-
-
-
         JPanel northPanel = new JPanel();
-//        JPanel southPanel = new JPanel();
-
         JPanel eastPanel = new JPanel();
         JPanel centerPanel = new JPanel();
-
-
         add(centerPanel,"Center");
         add(northPanel,"North");
-//        add(southPanel,"South");
-
         add(eastPanel,"East");
 
         centerPanel.setLayout(new GridLayout(4,3,5,5));
-
-//        southPanel.setLayout(new GridLayout(1,2,10,15));
-//        southPanel.setBorder(new EmptyBorder(5, 0, 5, 0));
-
         eastPanel.setLayout(new GridLayout(4,1,5,5));
         eastPanel.setPreferredSize(new Dimension(150,450));
         eastPanel.setBorder(new EmptyBorder(0, 10, 0, 0));
-
-
-
-
-
-
-
 
 
         centerPanel.add(b1);
@@ -180,12 +156,9 @@ public class Calculator extends JFrame implements ActionListener {
         centerPanel.add(bClear);
 
         northPanel.add(textField);
-//        southPanel.add(bEqual);
-//        southPanel.add(bClear);
 
         eastPanel.add(bPlus);
         eastPanel.add(bMinus);
-
         eastPanel.add(bMul);
         eastPanel.add(bDivision);
 
@@ -216,54 +189,63 @@ public class Calculator extends JFrame implements ActionListener {
 
         if (source == b1) {
             if (preSource==bEqual){
+                preSource=null;
                 textField.setText("");
             }
             textField.append("1");
         }
         if (source == b2) {
             if (preSource==bEqual){
+                preSource=null;
                 textField.setText("");
             }
             textField.append("2");
         }
         if (source == b3) {
             if (preSource==bEqual){
+                preSource=null;
                 textField.setText("");
             }
             textField.append("3");
         }
         if (source == b4) {
             if (preSource==bEqual){
+                preSource=null;
                 textField.setText("");
             }
             textField.append("4");
         }
         if (source == b5) {
             if (preSource==bEqual){
+                preSource=null;
                 textField.setText("");
             }
             textField.append("5");
         }
         if(source == b6){
             if (preSource==bEqual){
+                preSource=null;
                 textField.setText("");
             }
             textField.append("6");
         }
         if(source == b7){
             if (preSource==bEqual){
+                preSource=null;
                 textField.setText("");
             }
             textField.append("7");
         }
         if(source == b8){
             if (preSource==bEqual){
+                preSource=null;
                 textField.setText("");
             }
             textField.append("8");
         }
         if(source == b9){
             if (preSource==bEqual){
+                preSource=null;
                 textField.setText("");
             }
             textField.append("9");
@@ -298,14 +280,15 @@ public class Calculator extends JFrame implements ActionListener {
         }
         if(source == bEqual){
             preSource = e.getSource();
-            if (value1!=0){
             setValue2(Double.parseDouble(textField.getText()));
             textField.setText("");// when equal sign (=) is pressed.
-
-            }
             result();
         }
         if(source == b0){
+            if (preSource==bEqual){
+                preSource=null;
+                textField.setText("");
+            }
             textField.append("0");
         }
     }
@@ -319,8 +302,7 @@ public class Calculator extends JFrame implements ActionListener {
         } else if (sign==4){
             result = divide(value1,value2);
         }else if(sign==0){
-            result=111;
-            return;
+            result=0;
         }
         textField.setText(Double.toString(result));
         sign=0;
