@@ -206,6 +206,10 @@ public class Calculator extends JFrame implements ActionListener {
         result=0;
     }
 
+    public String textAreaValue(){
+        return textField.getText().toString();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
@@ -294,8 +298,11 @@ public class Calculator extends JFrame implements ActionListener {
         }
         if(source == bEqual){
             preSource = e.getSource();
+            if (value1!=0){
             setValue2(Double.parseDouble(textField.getText()));
             textField.setText("");// when equal sign (=) is pressed.
+
+            }
             result();
         }
         if(source == b0){
@@ -304,47 +311,44 @@ public class Calculator extends JFrame implements ActionListener {
     }
     public void result(){
         if (sign==1){
-            System.out.println("bEqual1");
             result = add(value1,value2);
         } else if (sign==2){
-            System.out.println("bEqual2");
             result = subtract(value1,value2);
         } else if (sign==3){
-            System.out.println("bEqual3");
             result = multiply(value1,value2);
         } else if (sign==4){
-            System.out.println("bEqual4");
             result = divide(value1,value2);
         }else if(sign==0){
             result=111;
+            return;
         }
-
         textField.setText(Double.toString(result));
         sign=0;
-
     }
 
-    public double add(double v1,double v2){
+    private double add(double v1,double v2){
         return v1+v2;
     }
-    public double subtract(double v1,double v2){
+    private double subtract(double v1,double v2){
         return v1-v2;
     }
-    public double multiply(double v1,double v2){
+    private double multiply(double v1,double v2){
         return v1*v2;
     }
-    public double divide(double v1,double v2){
+    private double divide(double v1,double v2){
         return v1/v2;
     }
 
     public void setValue1(double value){
-//        textField.setText("");
         value1=value;
     }
 
     public void setValue2(double value){
-//        textField.setText("");
         value2=value;
+    }
+
+    public void setOperator(int o){
+        sign=o;
     }
 
 }
